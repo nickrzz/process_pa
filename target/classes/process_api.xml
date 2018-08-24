@@ -9,6 +9,7 @@ http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/cu
 http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd">
     <apikit:config name="apiConfig" raml="api.raml" consoleEnabled="false" doc:name="Router" keepRamlBaseUri="false">
         <apikit:flow-mapping resource="/getFlightsDelta" action="get" flow-ref="getFlightsFlowSystemSOAP"/>
+        <apikit:flow-mapping resource="/getFlightsUnited" action="get" flow-ref="choiceFlow"/>
 
     </apikit:config>
     <context:property-placeholder location="api.properties" />

@@ -8,7 +8,7 @@ http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/cor
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
     <flow name="getFlightsFlowSystemSOAP">
-        <set-session-variable variableName="destination" value="#[sessionVars.destination]" doc:name="Session Variable"/>
+        <set-session-variable variableName="destination" value="#[message.inboundProperties.'http.query.params'.destination]" doc:name="Session Variable"/>
         <choice doc:name="Choice">
             <when expression="#[sessionVars.destination != empty]">
                 <http:request config-ref="HTTP_Request_Configuration" path="system/getFlightsSOAP" method="GET" doc:name="getFlightsFlowSOAP">
