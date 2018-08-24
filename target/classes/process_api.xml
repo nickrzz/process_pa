@@ -8,7 +8,7 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
 http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd
 http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd">
     <apikit:config name="apiConfig" raml="api.raml" consoleEnabled="false" doc:name="Router" keepRamlBaseUri="false">
-        <apikit:flow-mapping resource="/getFlights" action="get" flow-ref="choiceFlow"/>
+        <apikit:flow-mapping resource="/getFlightsDelta" action="get" flow-ref="getFlightsFlowSystemSOAP"/>
 
     </apikit:config>
     <context:property-placeholder location="api.properties" />
