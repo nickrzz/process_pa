@@ -9,10 +9,10 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
 http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd">
     <payload-type-filter expectedType="java.util.ArrayList" name="Filter_Not_ArrayList" doc:name="Payload"/>
-    <flow name="getSoapAndRestFlights">
+    <flow name="get:/flights">
         <scatter-gather doc:name="Scatter-Gather">
             <processor-chain>
-                <http:request config-ref="HTTP_Request_Configuration" path="system/getAllFlights" method="GET" doc:name="HTTP"/>
+                <http:request config-ref="HTTP_Request_Configuration" path="system/delta" method="GET" doc:name="HTTP"/>
                 <dw:transform-message doc:name="Transform Message">
                     <dw:set-payload><![CDATA[%dw 1.0
 %output application/java
@@ -21,7 +21,11 @@ payload]]></dw:set-payload>
                 </dw:transform-message>
             </processor-chain>
             <processor-chain>
-                <http:request config-ref="HTTP_Request_Configuration" path="system/getFlightsREST" method="GET" doc:name="HTTP"/>
+                <http:request config-ref="HTTP_Request_Configuration" path="system/united/code-destination/" method="GET" doc:name="HTTP">
+                    <http:request-builder>
+                        <http:query-param paramName="destination" value="LAX"/>
+                    </http:request-builder>
+                </http:request>
                 <dw:transform-message doc:name="Transform Message">
                     <dw:set-payload><![CDATA[%dw 1.0
 %output application/java
